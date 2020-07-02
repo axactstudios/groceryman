@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceryman/LoginPages/WelcomeScreen.dart';
+import 'package:groceryman/DrawerPages/MainHome.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: WelcomeScreen(),
+      home: MainHome(),
     );
   }
 }

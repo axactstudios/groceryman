@@ -1,7 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
+import 'package:groceryman/Class.dart';
 
+import '../item.dart';
 import '../navDrawer.dart';
 
 class MainHome extends StatefulWidget {
@@ -11,6 +15,52 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   final List<String> imageList = ['fruits.png', 'market.png', 'vegetable.png'];
+  final List<Items> Fruits = [];
+  final List<Items> Vegetables = [];
+  final List<Items> Dairy = [];
+  final List<Items> Food = [];
+  final List<Items> Bakery = [];
+  final List<Items> Meat = [];
+  final List<Items> Provisions = [];
+  final List<Items> Snacks = [];
+  final List<Items> Garden = [];
+  void getItemsRef(List items, String category) {
+    DatabaseReference itemsref =
+        FirebaseDatabase.instance.reference().child(category);
+    itemsref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+      items.clear();
+      for (var key in KEYS) {
+        Items c = new Items(
+          DATA[key]['Name'],
+          DATA[key]['ImageUrl'],
+          DATA[key]['Price'],
+          DATA[key]['Quantity'],
+        );
+        items.add(c);
+      }
+      setState(() {
+        print(items.length);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getItemsRef(Fruits, 'Fruits');
+    getItemsRef(Vegetables, 'Vegetables');
+    getItemsRef(Snacks, 'Snacks');
+    getItemsRef(Food, 'Food');
+    getItemsRef(Dairy, 'Dairy');
+    getItemsRef(Meat, 'Meat');
+    getItemsRef(Provisions, 'Provisions');
+    getItemsRef(Garden, 'Garden');
+    getItemsRef(Bakery, 'Bakery');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,15 +126,15 @@ class _MainHomeState extends State<MainHome> {
                   crossAxisSpacing: 3,
                   childAspectRatio: 0.7,
                   children: <Widget>[
-                    categoryCard('Fruits', 'bananas.png'),
-                    categoryCard('Dairy', 'milk.png'),
-                    categoryCard('Vegetables', 'vegetable1.png'),
-                    categoryCard('Snacks', 'snacks.png'),
-                    categoryCard('Provisions', 'flour.png'),
-                    categoryCard('Meat', 'meat.png'),
-                    categoryCard('Bakery', 'bread.png'),
-                    categoryCard('Garden', 'plant.png'),
-                    categoryCard('Food', 'cutlery.png'),
+                    categoryCard('Fruits', 'bananas.png', Fruits),
+                    categoryCard('Dairy', 'milk.png', Dairy),
+                    categoryCard('Vegetables', 'vegetable1.png', Vegetables),
+                    categoryCard('Snacks', 'snacks.png', Snacks),
+                    categoryCard('Provisions', 'flour.png', Provisions),
+                    categoryCard('Meat', 'meat.png', Meat),
+                    categoryCard('Bakery', 'bread.png', Bakery),
+                    categoryCard('Garden', 'plant.png', Garden),
+                    categoryCard('Food', 'cutlery.png', Food),
                   ],
                 ),
               ),
@@ -95,20 +145,28 @@ class _MainHomeState extends State<MainHome> {
     );
   }
 
-  Widget categoryCard(name, image) {
-    return Card(
-      elevation: 4,
-      child: Column(
-        children: [
-          Image.asset('images/$image'),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            name,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-          )
-        ],
+  Widget categoryCard(name, image, List name1) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Item(name1)),
+        );
+      },
+      child: Card(
+        elevation: 4,
+        child: Column(
+          children: [
+            Image.asset('images/$image'),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              name,
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
       ),
     );
   }
