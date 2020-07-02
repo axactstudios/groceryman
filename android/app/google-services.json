@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "533925596019",
+    "firebase_url": "https://groceryman-cc9ba.firebaseio.com",
+    "project_id": "groceryman-cc9ba",
+    "storage_bucket": "groceryman-cc9ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533925596019:android:92fe910b1c4bf87a769306",
+        "android_client_info": {
+          "package_name": "com.axactstudios.groceryman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533925596019-vi8h48ehel467qugs7qivtm6oe5mstp0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.axactstudios.groceryman",
+            "certificate_hash": "c61a3e94fe139e4295a672349ef2e727d73582d7"
+          }
+        },
+        {
+          "client_id": "533925596019-6ssekl4mjg445jqpkdeqlfikphm7mn6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYhtmNcX3Ykv-8_sJPF9znAE1fPxWbogw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533925596019-6ssekl4mjg445jqpkdeqlfikphm7mn6i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "533925596019-gfr3hp4k26vf3nfldks7njon8unbm07b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.axactstudios.groceryman"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
