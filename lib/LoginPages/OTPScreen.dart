@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../DrawerPages/MainHome.dart';
+import '../Drawer/MainHome.dart';
 import 'OTPinput.dart';
 
 class OTPScreen extends StatefulWidget {

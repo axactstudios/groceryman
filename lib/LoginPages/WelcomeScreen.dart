@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryman/LoginPages/PhoneLogin.dart';
 
-import '../DrawerPages/MainHome.dart';
+import '../Drawer/MainHome.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override

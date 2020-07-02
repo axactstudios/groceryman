@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
-import 'package:groceryman/Class.dart';
+import 'package:groceryman/Classes/ItemsClass.dart';
 
-import '../item.dart';
-import '../navDrawer.dart';
+import '../OtherPages/itemPage.dart';
+import 'navDrawer.dart';
 
 class MainHome extends StatefulWidget {
   @override
