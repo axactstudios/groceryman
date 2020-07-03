@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groceryman/Classes/Cart.dart';
 import 'package:groceryman/Classes/DatabaseHelper.dart';
-import 'package:sqflite/sqflite.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -204,9 +203,178 @@ class _CartPageState extends State<CartPage> {
                     );
                   }),
             ),
+            Container(
+              height: MediaQuery.of(context).size.height / 4,
+              decoration: BoxDecoration(
+                color: Color(0xFF900c3f),
+                borderRadius: BorderRadius.all(Radius.circular(0)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            FittedBox(
+                              child: Text(
+                                "Order Total = Rs. ${(totalAmount() + (0.18 * totalAmount()) + 40).toStringAsFixed(2)}  ",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'sf_pro',
+                                    fontSize:
+                                        MediaQuery.of(context).size.height /
+                                            40),
+                              ),
+                            ),
+                            FittedBox(
+                              child: Text(
+                                "Products Total = Rs. ${totalAmount()}",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'sf_pro',
+                                    fontSize:
+                                        MediaQuery.of(context).size.height /
+                                            60),
+                              ),
+                            ),
+                            FittedBox(
+                              child: Text(
+                                "GST(18%) = Rs. ${(totalAmount() * 0.18).toStringAsFixed(2)}",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'sf_pro',
+                                    fontSize:
+                                        MediaQuery.of(context).size.height /
+                                            60),
+                              ),
+                            ),
+                            FittedBox(
+                              child: Text(
+                                "Delivery Charges = Rs. 40.0",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'sf_pro',
+                                    fontSize:
+                                        MediaQuery.of(context).size.height /
+                                            60),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(15),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Text(
+                                    "Proceed for COD",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'sf_pro',
+                                        fontSize:
+                                            MediaQuery.of(context).size.height /
+                                                50,
+                                        color: Color(0xFF900c3f)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 70,
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(15),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Text(
+                                    "Pay online",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'sf_pro',
+                                        fontSize:
+                                            MediaQuery.of(context).size.height /
+                                                45,
+                                        color: Color(0xFF900c3f)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 80,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: MediaQuery.of(context).size.height - 20,
+                        height: MediaQuery.of(context).size.height / 18,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Text(
+                              "Check address details",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'sf_pro',
+                                  fontSize:
+                                      MediaQuery.of(context).size.height / 60,
+                                  color: Color(0xFF900c3f)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  double totalAmount() {
+    double sum = 0;
+    getAllItems();
+    for (int i = 0; i < cartItems.length; i++) {
+      sum += (double.parse(cartItems[i].imgUrl) * cartItems[i].qty);
+    }
+    print(sum);
+    return sum;
   }
 }
