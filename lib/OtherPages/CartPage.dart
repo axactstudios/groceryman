@@ -82,6 +82,9 @@ class _CartPageState extends State<CartPage> {
                                 height: 70,
                                 width: 70,
                               ),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Column(
                                 children: <Widget>[
                                   Text(
@@ -89,7 +92,7 @@ class _CartPageState extends State<CartPage> {
                                     style: TextStyle(
                                         fontFamily: 'sf_pro',
                                         color: Colors.white,
-                                        fontSize: 17),
+                                        fontSize: 14),
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -99,20 +102,23 @@ class _CartPageState extends State<CartPage> {
                                     style: TextStyle(
                                         fontFamily: 'sf_pro',
                                         color: Colors.white,
-                                        fontSize: 17),
+                                        fontSize: 14),
                                   ),
                                 ],
+                              ),
+                              SizedBox(
+                                width: 10,
                               ),
                               Row(
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
                                       Text(
-                                        'Qty : ',
+                                        'Qty:',
                                         style: TextStyle(
                                             fontFamily: 'sf_pro',
                                             color: Colors.white,
-                                            fontSize: 17),
+                                            fontSize: 14),
                                       ),
                                       SizedBox(
                                         width: 4,

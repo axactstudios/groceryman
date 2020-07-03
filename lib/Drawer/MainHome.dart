@@ -16,15 +16,25 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   final List<String> imageList = ['fruits.png', 'market.png', 'vegetable.png'];
+  // ignore: non_constant_identifier_names
   final List<Items> Fruits = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Vegetables = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Dairy = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Food = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Bakery = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Meat = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Provisions = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Snacks = [];
+  // ignore: non_constant_identifier_names
   final List<Items> Garden = [];
+
   void getItemsRef(List items, String category) {
     DatabaseReference itemsref =
         FirebaseDatabase.instance.reference().child(category);
@@ -137,12 +147,12 @@ class _MainHomeState extends State<MainHome> {
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.54,
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: GridView.count(
                   crossAxisCount: 3,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 3,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.7,
                   children: <Widget>[
                     categoryCard('Fruits', 'bananas.png', Fruits),
                     categoryCard('Dairy', 'milk.png', Dairy),

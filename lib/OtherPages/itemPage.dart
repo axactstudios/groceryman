@@ -75,8 +75,8 @@ class _ItemState extends State<Item> {
             children: [
               Image.network(
                 price,
-                height: 100,
-                width: 100,
+                height: 75,
+                width: 75,
               ),
               SizedBox(
                 height: 10,
