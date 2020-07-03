@@ -5,6 +5,7 @@ import 'package:groceryman/Classes/Cart.dart';
 import 'package:groceryman/Classes/DatabaseHelper.dart';
 import 'package:groceryman/OtherPages/CartPage.dart';
 
+// ignore: must_be_immutable
 class Item extends StatefulWidget {
   List itemCategory;
   Item(this.itemCategory);
