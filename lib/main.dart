@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceryman/Drawer/MainHome.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
