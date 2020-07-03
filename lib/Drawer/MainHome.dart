@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
 import 'package:groceryman/Classes/ItemsClass.dart';
+import 'package:groceryman/OtherPages/CartPage.dart';
 
 import '../OtherPages/itemPage.dart';
 import 'navDrawer.dart';
@@ -76,6 +77,23 @@ class _MainHomeState extends State<MainHome> {
               fontFamily: 'sf_pro'),
         ),
         backgroundColor: Color(0xFF900c3f),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CartPage()),
+                );
+              },
+              child: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
       backgroundColor: Colors.white,
       body: Column(
@@ -116,15 +134,15 @@ class _MainHomeState extends State<MainHome> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
               child: Container(
-                height: 400,
+                height: MediaQuery.of(context).size.height * 0.54,
                 child: GridView.count(
                   crossAxisCount: 3,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 3,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.8,
                   children: <Widget>[
                     categoryCard('Fruits', 'bananas.png', Fruits),
                     categoryCard('Dairy', 'milk.png', Dairy),
