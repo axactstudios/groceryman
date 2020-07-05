@@ -88,7 +88,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 onTap: () async {
                   FirebaseUser user = await mAuth
                       .currentUser(); //Added the condition to check if the user is already logged in
-                  mAuth.currentUser() == null ? goToLogin() : goToHomePage1();
+                  user == null ? goToLogin() : goToHomePage1();
                 },
                 child: Center(
                   child: Padding(
