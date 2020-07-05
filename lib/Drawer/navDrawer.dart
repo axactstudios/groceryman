@@ -7,6 +7,7 @@ import 'package:groceryman/OtherPages/OrdersPage.dart';
 
 void signOut() async {
   await FirebaseAuth.instance.signOut();
+  print('out');
 }
 
 Widget retNavDrawer() {
@@ -168,7 +169,9 @@ Widget retNavDrawer() {
                   fontWeight: FontWeight.w600),
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            signOut();
+          },
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),

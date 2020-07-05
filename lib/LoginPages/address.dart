@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:groceryman/Drawer/MainHome.dart';
 
 class Address extends StatefulWidget {
   final String phno;
@@ -152,33 +153,26 @@ class _AddressState extends State<Address> {
               onTap: () async {
                 FirebaseUser user = await mAuth.currentUser();
 
-                DatabaseReference userRef =
-                    FirebaseDatabase.instance.reference().child('Users');
-                userRef.set({user.phoneNumber.toString()});
-                FirebaseDatabase.instance
-                    .reference()
-                    .child('Users')
-                    .child(user.uid)
-                    .set({
-                  'Name': myController.text,
-                  'Number': widget.phno,
-                  'Addressline1': myController1.text,
-                  'Addressline2': myController2.text,
-                  'pincode': myController3.text
-                });
-
                 if (formKey.currentState.validate()) {
+                  DatabaseReference dbRef =
+                      FirebaseDatabase.instance.reference();
+                  dbRef.child('Users').child(user.uid).set({
+                    "Name": myController.text,
+                    "Add1": myController1.text,
+                    'Add2': myController2.text,
+                    'Zip': myController3.text
+                  });
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => null),
+                    MaterialPageRoute(builder: (context) => MainHome()),
                   );
                 }
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 34.0),
                 decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(30.0)),
+                    color: Color(0xFFfc9d9d),
+                    borderRadius: BorderRadius.circular(15.0)),
                 child: Text(
                   'SAVE',
                   style: TextStyle(
