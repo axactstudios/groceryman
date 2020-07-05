@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
 import 'package:getflutter/components/drawer/gf_drawer.dart';
+import 'package:groceryman/OtherPages/OrdersPage.dart';
 
 void signOut() async {
   await FirebaseAuth.instance.signOut();
@@ -167,9 +168,7 @@ Widget retNavDrawer() {
                   fontWeight: FontWeight.w600),
             ),
           ),
-          onTap: () {
-            signOut();
-          },
+          onTap: () {},
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),

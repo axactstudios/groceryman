@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groceryman/Classes/Cart.dart';
@@ -11,6 +14,8 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   List<Cart> cartItems = [];
   final dbHelper = DatabaseHelper.instance;
+  final dbRef = FirebaseDatabase.instance.reference();
+  FirebaseAuth mAuth = FirebaseAuth.instance;
 
   int newQty;
 
@@ -18,8 +23,6 @@ class _CartPageState extends State<CartPage> {
     final allRows = await dbHelper.queryAllRows();
     cartItems.clear();
     allRows.forEach((row) => cartItems.add(Cart.fromMap(row)));
-    print(cartItems[0].imgUrl);
-
     setState(() {});
   }
 
@@ -207,7 +210,10 @@ class _CartPageState extends State<CartPage> {
               height: MediaQuery.of(context).size.height / 4,
               decoration: BoxDecoration(
                 color: Color(0xFF900c3f),
-                borderRadius: BorderRadius.all(Radius.circular(0)),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(15),
+                ),
               ),
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -267,10 +273,15 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.1,
+                        ),
                         Column(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                onOrderPlaced();
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(
@@ -278,6 +289,8 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                   color: Colors.white,
                                 ),
+                                width:
+                                    MediaQuery.of(context).size.width * 0.315,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 10),
@@ -298,7 +311,9 @@ class _CartPageState extends State<CartPage> {
                               height: MediaQuery.of(context).size.height / 70,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                onOrderPlaced();
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(
@@ -306,18 +321,23 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                   color: Colors.white,
                                 ),
+                                width:
+                                    MediaQuery.of(context).size.width * 0.315,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 10),
-                                  child: Text(
-                                    "Pay online",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'sf_pro',
-                                        fontSize:
-                                            MediaQuery.of(context).size.height /
-                                                45,
-                                        color: Color(0xFF900c3f)),
+                                      horizontal: 10, vertical: 7),
+                                  child: Center(
+                                    child: Text(
+                                      "Pay online",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'sf_pro',
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              45,
+                                          color: Color(0xFF900c3f)),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -327,7 +347,7 @@ class _CartPageState extends State<CartPage> {
                       ],
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 80,
+                      height: MediaQuery.of(context).size.height / 40,
                     ),
                     InkWell(
                       onTap: () {},
@@ -368,13 +388,36 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
+  void onOrderPlaced() async {
+    List<String> item = [];
+    List<int> qty = [];
+    double orderAmount = totalAmount();
+
+    for (int i = 0; i < cartItems.length; i++) {
+      item.add(cartItems[i].productName);
+      qty.add(cartItems[i].qty);
+    }
+
+    FirebaseUser user = await mAuth.currentUser();
+
+    dbRef
+        .child('Orders')
+        .child(user.uid)
+        .child(TimeOfDay.now().toString())
+        .set({
+      "itemsName": item,
+      "itemsQty": qty,
+      'orderAmount': orderAmount,
+      'isCompleted': false
+    });
+  }
+
   double totalAmount() {
     double sum = 0;
     getAllItems();
     for (int i = 0; i < cartItems.length; i++) {
       sum += (double.parse(cartItems[i].imgUrl) * cartItems[i].qty);
     }
-    print(sum);
     return sum;
   }
 }
