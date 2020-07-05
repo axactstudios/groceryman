@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
 import 'package:groceryman/Classes/ItemsClass.dart';
+import 'package:groceryman/Classes/Orders.dart';
 import 'package:groceryman/OtherPages/CartPage.dart';
+import 'package:groceryman/OtherPages/OrdersPage.dart';
 
 import '../OtherPages/itemPage.dart';
 import 'navDrawer.dart';
@@ -12,6 +15,40 @@ import 'navDrawer.dart';
 class MainHome extends StatefulWidget {
   @override
   _MainHomeState createState() => _MainHomeState();
+}
+
+List<Orders> pastOrders = [];
+List<Orders> ongoingOrders = [];
+final FirebaseAuth mAuth = FirebaseAuth.instance;
+
+getOrders() async {
+  pastOrders.clear();
+  ongoingOrders.clear();
+  final FirebaseUser user = await mAuth.currentUser();
+  DatabaseReference orderRef =
+      FirebaseDatabase.instance.reference().child('Orders').child(user.uid);
+  orderRef.once().then((DataSnapshot snapshot) async {
+    Map<dynamic, dynamic> values = await snapshot.value;
+    values.forEach((key, values) async {
+      Orders newOrder = Orders();
+      newOrder.orderAmount = values['orderAmount'];
+      print(newOrder.orderAmount);
+      newOrder.itemsName = List<String>.from(values['itemsName']);
+      newOrder.itemsQty = List<int>.from(values['itemsQty']);
+      print(newOrder.itemsQty);
+      print(newOrder.itemsName);
+      if (values['isCompleted'] == false) {
+        print('Ongoing');
+        ongoingOrders.add(newOrder);
+      } else {
+        print('Past');
+        pastOrders.add(newOrder);
+      }
+    });
+  });
+
+  print(ongoingOrders.length);
+  print(pastOrders.length);
 }
 
 class _MainHomeState extends State<MainHome> {
@@ -71,6 +108,7 @@ class _MainHomeState extends State<MainHome> {
     getItemsRef(Provisions, 'Provisions');
     getItemsRef(Garden, 'Garden');
     getItemsRef(Bakery, 'Bakery');
+    getOrders();
   }
 
   @override
@@ -99,6 +137,25 @@ class _MainHomeState extends State<MainHome> {
               },
               child: Icon(
                 Icons.shopping_cart,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OrdersPage(
+                        ongoingOrders: ongoingOrders,
+                        pastOrders: pastOrders,
+                      ),
+                    ));
+              },
+              child: Icon(
+                Icons.shopping_basket,
                 color: Colors.white,
               ),
             ),
