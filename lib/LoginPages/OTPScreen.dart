@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groceryman/LoginPages/addressFrame.dart';
+import 'package:groceryman/OtherPages/SignedIn.dart';
 
 import '../Drawer/MainHome.dart';
 import 'OTPinput.dart';
@@ -175,7 +176,7 @@ class _OTPScreenState extends State<OTPScreen> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => AddressFrame(),
+              builder: (context) => SignedIn(),
             ));
 //        if (value.user != null) {
 //          FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -257,7 +258,7 @@ class _OTPScreenState extends State<OTPScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => AddressFrame(),
+            builder: (context) => SignedIn(),
           ));
 
 //      if (value.user != null) {
