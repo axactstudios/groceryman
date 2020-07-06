@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:groceryman/Classes/User.dart';
+import 'package:groceryman/LoginPages/addressFrame2.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -48,6 +49,26 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF900c3f),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AddressFrame2(
+                            userData: userData,
+                          )),
+                );
+              },
+              child: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
       ),
       body: Container(
         child: SafeArea(
