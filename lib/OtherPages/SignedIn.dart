@@ -50,9 +50,13 @@ class _SignedInState extends State<SignedIn> {
           MaterialPageRoute(builder: (context) => MainHome()),
         );
       } else {
+        print(widget.phNo);
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => AddressFrame()),
+          MaterialPageRoute(
+              builder: (context) => AddressFrame(
+                    phno: widget.phNo,
+                  )),
         );
       }
     });

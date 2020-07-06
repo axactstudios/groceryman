@@ -7,6 +7,7 @@ import 'package:groceryman/Classes/ItemsClass.dart';
 import 'package:groceryman/Classes/Orders.dart';
 import 'package:groceryman/OtherPages/CartPage.dart';
 import 'package:groceryman/OtherPages/OrdersPage.dart';
+import 'package:groceryman/OtherPages/ProfilePage.dart';
 import '../OtherPages/itemPage.dart';
 import 'navDrawer.dart';
 
@@ -15,39 +16,7 @@ class MainHome extends StatefulWidget {
   _MainHomeState createState() => _MainHomeState();
 }
 
-List<Orders> pastOrders = [];
-List<Orders> ongoingOrders = [];
 final FirebaseAuth mAuth = FirebaseAuth.instance;
-
-getOrders() async {
-  pastOrders.clear();
-  ongoingOrders.clear();
-  final FirebaseUser user = await mAuth.currentUser();
-  DatabaseReference orderRef =
-      FirebaseDatabase.instance.reference().child('Orders').child(user.uid);
-  orderRef.once().then((DataSnapshot snapshot) async {
-    Map<dynamic, dynamic> values = await snapshot.value;
-    values.forEach((key, values) async {
-      Orders newOrder = Orders();
-      newOrder.orderAmount = values['orderAmount'];
-      print(newOrder.orderAmount);
-      newOrder.itemsName = List<String>.from(values['itemsName']);
-      newOrder.itemsQty = List<int>.from(values['itemsQty']);
-      print(newOrder.itemsQty);
-      print(newOrder.itemsName);
-      if (values['isCompleted'] == false) {
-        print('Ongoing');
-        ongoingOrders.add(newOrder);
-      } else {
-        print('Past');
-        pastOrders.add(newOrder);
-      }
-    });
-  });
-
-  print(ongoingOrders.length);
-  print(pastOrders.length);
-}
 
 class _MainHomeState extends State<MainHome> {
   final List<String> imageList = ['fruits.png', 'market.png', 'vegetable.png'];
@@ -69,6 +38,43 @@ class _MainHomeState extends State<MainHome> {
   final List<Items> Snacks = [];
   // ignore: non_constant_identifier_names
   final List<Items> Garden = [];
+
+//  List<Orders> pastOrders = [];
+//  List<Orders> ongoingOrders = [];
+//
+//  getOrders() async {
+//    pastOrders.clear();
+//    ongoingOrders.clear();
+//    final FirebaseUser user = await mAuth.currentUser();
+//    DatabaseReference orderRef =
+//        FirebaseDatabase.instance.reference().child('Orders').child(user.uid);
+//    orderRef.once().then((DataSnapshot snapshot) async {
+//      Map<dynamic, dynamic> values = await snapshot.value;
+//      values.forEach((key, values) async {
+//        Orders newOrder = Orders();
+//        newOrder.orderAmount = values['orderAmount'];
+//        print(newOrder.orderAmount);
+//        newOrder.itemsName = List<String>.from(values['itemsName']);
+//        newOrder.itemsQty = List<int>.from(values['itemsQty']);
+//        print(newOrder.itemsQty);
+//        print(newOrder.itemsName);
+//        if (values['isCompleted'] == false) {
+//          print('Ongoing');
+//          ongoingOrders.add(newOrder);
+//        } else {
+//          print('Past');
+//          pastOrders.add(newOrder);
+//        }
+//      });
+//    });
+//
+//    setState(() {
+//      print('Orders fetched');
+//    });
+//
+//    print(ongoingOrders.length);
+//    print(pastOrders.length);
+//  }
 
   void getItemsRef(List items, String category) {
     DatabaseReference itemsref =
@@ -106,13 +112,13 @@ class _MainHomeState extends State<MainHome> {
     getItemsRef(Provisions, 'Provisions');
     getItemsRef(Garden, 'Garden');
     getItemsRef(Bakery, 'Bakery');
-    getOrders();
+    // getOrders();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(ongoingOrders: ongoingOrders, pastOrders: pastOrders),
+      drawer: NavDrawer(),
       appBar: AppBar(
         title: Text(
           'Grocery Man',
@@ -139,25 +145,25 @@ class _MainHomeState extends State<MainHome> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OrdersPage(
-                        ongoingOrders: ongoingOrders,
-                        pastOrders: pastOrders,
-                      ),
-                    ));
-              },
-              child: Icon(
-                Icons.shopping_basket,
-                color: Colors.white,
-              ),
-            ),
-          ),
+//          Padding(
+//            padding: const EdgeInsets.all(15.0),
+//            child: InkWell(
+//              onTap: () {
+//                Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                      builder: (context) => OrdersPage(
+//                        ongoingOrders: ongoingOrders,
+//                        pastOrders: pastOrders,
+//                      ),
+//                    ));
+//              },
+//              child: Icon(
+//                Icons.shopping_basket,
+//                color: Colors.white,
+//              ),
+//            ),
+//          ),
         ],
       ),
       backgroundColor: Colors.white,

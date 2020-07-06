@@ -173,10 +173,13 @@ class _OTPScreenState extends State<OTPScreen> {
       _firebaseAuth
           .signInWithCredential(phoneAuthCredential)
           .then((AuthResult value) async {
+        print(widget.mobileNumber);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => SignedIn(),
+              builder: (context) => SignedIn(
+                phNo: widget.mobileNumber,
+              ),
             ));
 //        if (value.user != null) {
 //          FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -258,7 +261,9 @@ class _OTPScreenState extends State<OTPScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => SignedIn(),
+            builder: (context) => SignedIn(
+              phNo: widget.mobileNumber,
+            ),
           ));
 
 //      if (value.user != null) {

@@ -15,6 +15,11 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> {
+//  @override
+//  void initState() {
+//    getOrders();
+//  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -114,34 +119,38 @@ class _OrdersPageState extends State<OrdersPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: item.itemsName.length,
-                                    itemBuilder: (context, index) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Text(
-                                            item.itemsName[index],
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                fontFamily: 'sf_pro'),
-                                          ),
-                                          Text(
-                                            item.itemsQty[index].toString(),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                fontFamily: 'sf_pro'),
-                                          )
-                                        ],
-                                      );
-                                    }),
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.125,
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: item.itemsName.length,
+                                      itemBuilder: (context, index) {
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              item.itemsName[index],
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 16,
+                                                  fontFamily: 'sf_pro'),
+                                            ),
+                                            Text(
+                                              item.itemsQty[index].toString(),
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 16,
+                                                  fontFamily: 'sf_pro'),
+                                            )
+                                          ],
+                                        );
+                                      }),
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12.0),

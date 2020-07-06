@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
@@ -6,6 +7,7 @@ import 'package:getflutter/components/drawer/gf_drawer.dart';
 import 'package:groceryman/Classes/Orders.dart';
 import 'package:groceryman/LoginPages/WelcomeScreen.dart';
 import 'package:groceryman/OtherPages/OrdersPage.dart';
+import 'package:groceryman/OtherPages/ProfilePage.dart';
 
 class NavDrawer extends StatefulWidget {
   List<Orders> pastOrders = [];
@@ -20,6 +22,52 @@ class _NavDrawerState extends State<NavDrawer> {
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     print('out');
+  }
+
+  List<Orders> pastOrders = [];
+  List<Orders> ongoingOrders = [];
+  FirebaseAuth mAuth = FirebaseAuth.instance;
+
+  getOrders() async {
+    pastOrders.clear();
+    ongoingOrders.clear();
+    final FirebaseUser user = await mAuth.currentUser();
+    DatabaseReference orderRef =
+        FirebaseDatabase.instance.reference().child('Orders').child(user.uid);
+    orderRef.once().then((DataSnapshot snapshot) async {
+      Map<dynamic, dynamic> values = await snapshot.value;
+      values.forEach((key, values) async {
+        Orders newOrder = Orders();
+        newOrder.orderAmount = values['orderAmount'];
+        print(newOrder.orderAmount);
+        newOrder.itemsName = List<String>.from(values['itemsName']);
+        newOrder.itemsQty = List<int>.from(values['itemsQty']);
+        print(newOrder.itemsQty);
+        print(newOrder.itemsName);
+        if (values['isCompleted'] == false) {
+          print('Ongoing');
+          ongoingOrders.add(newOrder);
+        } else {
+          print('Past');
+          pastOrders.add(newOrder);
+        }
+      });
+    });
+
+    setState(() {
+      print('Orders fetched');
+    });
+
+    print(ongoingOrders.length);
+    print(pastOrders.length);
+  }
+
+  @override
+  void initState() {
+    getOrders();
+    setState(() {
+      print('Fetched again');
+    });
   }
 
   @override
@@ -119,8 +167,7 @@ class _NavDrawerState extends State<NavDrawer> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => OrdersPage(
-                        ongoingOrders: widget.ongoingOrders,
-                        pastOrders: widget.pastOrders),
+                        ongoingOrders: ongoingOrders, pastOrders: pastOrders),
                   ));
             },
           ),
@@ -141,7 +188,12 @@ class _NavDrawerState extends State<NavDrawer> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            },
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
