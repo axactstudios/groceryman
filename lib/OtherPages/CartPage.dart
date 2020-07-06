@@ -48,6 +48,7 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    double pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -77,127 +78,117 @@ class _CartPageState extends State<CartPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Image.network(
-                                item.price,
-                                height: 70,
-                                width: 70,
+                              Container(
+                                width: pWidth * 0.2,
+                                child: Image.network(
+                                  item.price,
+                                  height: 70,
+                                  width: 70,
+                                ),
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    item.productName,
-                                    style: TextStyle(
-                                        fontFamily: 'sf_pro',
-                                        color: Colors.white,
-                                        fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Price : ${item.imgUrl}',
-                                    style: TextStyle(
-                                        fontFamily: 'sf_pro',
-                                        color: Colors.white,
-                                        fontSize: 14),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Row(
+                              Container(
+                                width: pWidth * 0.4,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
-                                        'Qty:',
+                                        item.productName,
                                         style: TextStyle(
                                             fontFamily: 'sf_pro',
                                             color: Colors.white,
                                             fontSize: 14),
                                       ),
                                       SizedBox(
-                                        width: 4,
+                                        height: 10,
                                       ),
-                                      InkWell(
-                                        onTap: () {
-                                          if (item.qty == 1) {
-                                            removeItem(item.productName);
-                                          } else {
-                                            newQty = item.qty - 1;
-                                            updateItem(
-                                                id: item.id,
-                                                name: item.productName,
-                                                imgUrl: item.imgUrl,
-                                                price: item.price,
-                                                qty: newQty);
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.indeterminate_check_box,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Container(
-                                        height: 25,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: Text(
-                                            item.qty.toString(),
-                                            style: TextStyle(
-                                                fontFamily: 'sf_pro',
-                                                color: Colors.black,
-                                                fontSize: 17),
-                                          ),
-                                        ),
+                                      Text(
+                                        'Price : ${item.imgUrl}',
+                                        style: TextStyle(
+                                            fontFamily: 'sf_pro',
+                                            color: Colors.white,
+                                            fontSize: 14),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      newQty = item.qty + 1;
-                                      updateItem(
-                                          id: item.id,
-                                          name: item.productName,
-                                          imgUrl: item.imgUrl,
-                                          price: item.price,
-                                          qty: newQty);
-                                    },
-                                    child: Icon(
-                                      Icons.add_box,
-                                      color: Colors.white,
+                                ),
+                              ),
+                              Container(
+                                width: pWidth * 0.3,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    InkWell(
+                                      onTap: () {
+                                        if (item.qty == 1) {
+                                          removeItem(item.productName);
+                                        } else {
+                                          newQty = item.qty - 1;
+                                          updateItem(
+                                              id: item.id,
+                                              name: item.productName,
+                                              imgUrl: item.imgUrl,
+                                              price: item.price,
+                                              qty: newQty);
+                                        }
+                                      },
+                                      child: Icon(
+                                        Icons.indeterminate_check_box,
+                                        color: Colors.white,
+                                        size: pWidth * 0.07,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      removeItem(item.productName);
-                                    },
-                                    child: Icon(
-                                      Icons.delete,
-                                      color: Colors.white,
+                                    Container(
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Text(
+                                          item.qty.toString(),
+                                          style: TextStyle(
+                                              fontFamily: 'sf_pro',
+                                              color: Colors.black,
+                                              fontSize: 17),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    InkWell(
+                                      onTap: () {
+                                        newQty = item.qty + 1;
+                                        updateItem(
+                                            id: item.id,
+                                            name: item.productName,
+                                            imgUrl: item.imgUrl,
+                                            price: item.price,
+                                            qty: newQty);
+                                      },
+                                      child: Icon(
+                                        Icons.add_box,
+                                        color: Colors.white,
+                                        size: pWidth * 0.07,
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        removeItem(item.productName);
+                                      },
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: Colors.white,
+                                        size: pWidth * 0.07,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
                           ),
@@ -224,54 +215,57 @@ class _CartPageState extends State<CartPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            FittedBox(
-                              child: Text(
-                                "Order Total = Rs. ${(totalAmount() + (0.18 * totalAmount()) + 40).toStringAsFixed(2)}  ",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'sf_pro',
-                                    fontSize:
-                                        MediaQuery.of(context).size.height /
-                                            40),
+                        Container(
+                          width: pWidth * 0.5,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              FittedBox(
+                                child: Text(
+                                  "Order Total = Rs. ${(totalAmount() + (0.18 * totalAmount()) + 40).toStringAsFixed(2)}  ",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'sf_pro',
+                                      fontSize:
+                                          MediaQuery.of(context).size.height /
+                                              40),
+                                ),
                               ),
-                            ),
-                            FittedBox(
-                              child: Text(
-                                "Products Total = Rs. ${totalAmount()}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'sf_pro',
-                                    fontSize:
-                                        MediaQuery.of(context).size.height /
-                                            60),
+                              FittedBox(
+                                child: Text(
+                                  "Products Total = Rs. ${totalAmount()}",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'sf_pro',
+                                      fontSize:
+                                          MediaQuery.of(context).size.height /
+                                              60),
+                                ),
                               ),
-                            ),
-                            FittedBox(
-                              child: Text(
-                                "GST(18%) = Rs. ${(totalAmount() * 0.18).toStringAsFixed(2)}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'sf_pro',
-                                    fontSize:
-                                        MediaQuery.of(context).size.height /
-                                            60),
+                              FittedBox(
+                                child: Text(
+                                  "GST(18%) = Rs. ${(totalAmount() * 0.18).toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'sf_pro',
+                                      fontSize:
+                                          MediaQuery.of(context).size.height /
+                                              60),
+                                ),
                               ),
-                            ),
-                            FittedBox(
-                              child: Text(
-                                "Delivery Charges = Rs. 40.0",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'sf_pro',
-                                    fontSize:
-                                        MediaQuery.of(context).size.height /
-                                            60),
+                              FittedBox(
+                                child: Text(
+                                  "Delivery Charges = Rs. 40.0",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'sf_pro',
+                                      fontSize:
+                                          MediaQuery.of(context).size.height /
+                                              60),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.1,

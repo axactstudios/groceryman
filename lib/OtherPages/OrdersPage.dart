@@ -59,131 +59,119 @@ class _OrdersPageState extends State<OrdersPage> {
                       ),
                     ),
                   )
-                : SingleChildScrollView(
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: widget.ongoingOrders.length,
-                              itemBuilder: (context, index) {
-                                var item = widget.ongoingOrders[index];
-                                return Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF900c3f),
-                                      borderRadius: BorderRadius.circular(15),
+                : ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: widget.ongoingOrders.length,
+                    itemBuilder: (context, index) {
+                      var item = widget.ongoingOrders[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF900c3f),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                  'Order ${index + 1}',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      fontFamily: 'sf_pro'),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Item Name',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          fontFamily: 'sf_pro'),
                                     ),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Text(
-                                            'Order ${index + 1}',
+                                    Text(
+                                      'Quantity',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          fontFamily: 'sf_pro'),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: item.itemsName.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            item.itemsName[index],
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text(
-                                                'Item Name',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 18,
-                                                    fontFamily: 'sf_pro'),
-                                              ),
-                                              Text(
-                                                'Quantity',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 18,
-                                                    fontFamily: 'sf_pro'),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: ListView.builder(
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: item.itemsName.length,
-                                              itemBuilder: (context, index) {
-                                                return Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      item.itemsName[index],
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 16,
-                                                          fontFamily: 'sf_pro'),
-                                                    ),
-                                                    Text(
-                                                      item.itemsQty[index]
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 16,
-                                                          fontFamily: 'sf_pro'),
-                                                    )
-                                                  ],
-                                                );
-                                              }),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text(
-                                                'Order Amount',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 18,
-                                                    fontFamily: 'sf_pro'),
-                                              ),
-                                              Text(
-                                                'Rs. ${item.orderAmount.toString()}',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    fontFamily: 'sf_pro'),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
+                                          Text(
+                                            item.itemsQty[index].toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      );
+                                    }),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Order Amount',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          fontFamily: 'sf_pro'),
                                     ),
-                                  ),
-                                );
-                              }),
-                        ],
-                      ),
-                    ),
-                  ),
+                                    Text(
+                                      'Rs. ${item.orderAmount.toString()}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          fontFamily: 'sf_pro'),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
             widget.pastOrders.length == 0
                 ? SingleChildScrollView(
                     child: Container(
@@ -193,131 +181,119 @@ class _OrdersPageState extends State<OrdersPage> {
                       ),
                     ),
                   )
-                : SingleChildScrollView(
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: widget.pastOrders.length,
-                              itemBuilder: (context, index) {
-                                var item = widget.pastOrders[index];
-                                return Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF900c3f),
-                                      borderRadius: BorderRadius.circular(15),
+                : ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: widget.pastOrders.length,
+                    itemBuilder: (context, index) {
+                      var item = widget.pastOrders[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF900c3f),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                  'Order ${index + 1}',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      fontFamily: 'sf_pro'),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Item Name',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          fontFamily: 'sf_pro'),
                                     ),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Text(
-                                            'Order ${index + 1}',
+                                    Text(
+                                      'Quantity',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          fontFamily: 'sf_pro'),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: item.itemsName.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            item.itemsName[index],
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text(
-                                                'Item Name',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 18,
-                                                    fontFamily: 'sf_pro'),
-                                              ),
-                                              Text(
-                                                'Quantity',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 18,
-                                                    fontFamily: 'sf_pro'),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: ListView.builder(
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: item.itemsName.length,
-                                              itemBuilder: (context, index) {
-                                                return Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      item.itemsName[index],
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 16,
-                                                          fontFamily: 'sf_pro'),
-                                                    ),
-                                                    Text(
-                                                      item.itemsQty[index]
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 16,
-                                                          fontFamily: 'sf_pro'),
-                                                    )
-                                                  ],
-                                                );
-                                              }),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text(
-                                                'Order Amount',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 18,
-                                                    fontFamily: 'sf_pro'),
-                                              ),
-                                              Text(
-                                                'Rs. ${item.orderAmount.toString()}',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    fontFamily: 'sf_pro'),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
+                                          Text(
+                                            item.itemsQty[index].toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      );
+                                    }),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Order Amount',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          fontFamily: 'sf_pro'),
                                     ),
-                                  ),
-                                );
-                              }),
-                        ],
-                      ),
-                    ),
-                  )
+                                    Text(
+                                      'Rs. ${item.orderAmount.toString()}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          fontFamily: 'sf_pro'),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    })
           ],
         ),
       ),
