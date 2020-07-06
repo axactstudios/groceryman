@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
 import 'package:getflutter/components/drawer/gf_drawer.dart';
 import 'package:groceryman/Classes/Orders.dart';
+import 'package:groceryman/Drawer/PrivacyPolicy.dart';
 import 'package:groceryman/Drawer/support_page.dart';
+import 'package:groceryman/Drawer/support_page_main.dart';
 import 'package:groceryman/LoginPages/WelcomeScreen.dart';
 import 'package:groceryman/OtherPages/OrdersPage.dart';
 import 'package:groceryman/OtherPages/ProfilePage.dart';
@@ -216,7 +218,7 @@ class _NavDrawerState extends State<NavDrawer> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Support()),
+                MaterialPageRoute(builder: (context) => ContactUsPage()),
               );
             },
           ),
@@ -237,7 +239,12 @@ class _NavDrawerState extends State<NavDrawer> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrivacyPolicy()),
+              );
+            },
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),

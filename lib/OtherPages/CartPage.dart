@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groceryman/Classes/Cart.dart';
 import 'package:groceryman/Classes/DatabaseHelper.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _CartPageState extends State<CartPage> {
   final dbHelper = DatabaseHelper.instance;
   final dbRef = FirebaseDatabase.instance.reference();
   FirebaseAuth mAuth = FirebaseAuth.instance;
+  Razorpay _razorpay;
 
   int newQty;
 
@@ -44,6 +46,10 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     getAllItems();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
 
   @override
@@ -305,8 +311,9 @@ class _CartPageState extends State<CartPage> {
                               height: MediaQuery.of(context).size.height / 70,
                             ),
                             InkWell(
-                              onTap: () {
-                                onOrderPlaced();
+                              onTap: () async {
+                                await onOrderPlaced();
+                                openCheckout();
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -382,7 +389,7 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  void onOrderPlaced() async {
+  Future<void> onOrderPlaced() async {
     List<String> item = [];
     List<int> qty = [];
     double orderAmount = totalAmount();
@@ -416,5 +423,45 @@ class _CartPageState extends State<CartPage> {
       sum += (double.parse(cartItems[i].imgUrl) * cartItems[i].qty);
     }
     return sum;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void openCheckout() async {
+    var options = {
+      'key': 'abc',
+      'amount': ((totalAmount() + 0.18 * totalAmount() + 40) * 100).toString(),
+      'name': 'Axact Studios',
+      'description': 'Bill',
+      'prefill': {'contact': '', '': 'test@razorpay.com'},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e);
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    Fluttertoast.showToast(
+        msg: "SUCCESS: " + response.paymentId, timeInSecForIosWeb: 4);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message,
+        timeInSecForIosWeb: 4);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL_WALLET: " + response.walletName, timeInSecForIosWeb: 4);
   }
 }
