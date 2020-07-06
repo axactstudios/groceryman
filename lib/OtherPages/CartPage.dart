@@ -404,6 +404,9 @@ class _CartPageState extends State<CartPage> {
       'orderAmount': orderAmount,
       'isCompleted': false
     });
+
+    print('Order Placed');
+    Navigator.pop(context);
   }
 
   double totalAmount() {

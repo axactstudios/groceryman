@@ -154,13 +154,15 @@ class _AddressState extends State<Address> {
                 FirebaseUser user = await mAuth.currentUser();
 
                 if (formKey.currentState.validate()) {
+                  print(widget.phno);
                   DatabaseReference dbRef =
                       FirebaseDatabase.instance.reference();
                   dbRef.child('Users').child(user.uid).set({
                     "Name": myController.text,
                     "Add1": myController1.text,
                     'Add2': myController2.text,
-                    'Zip': myController3.text
+                    'Zip': myController3.text,
+                    'phNo': widget.phno
                   });
                   Navigator.pushReplacement(
                     context,

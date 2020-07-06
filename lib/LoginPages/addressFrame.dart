@@ -4,11 +4,17 @@ import 'package:groceryman/LoginPages/address.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class AddressFrame extends StatelessWidget {
+class AddressFrame extends StatefulWidget {
   final String phno;
-
   AddressFrame({Key key, this.phno}) : super(key: key);
+
+  @override
+  _AddressFrameState createState() => _AddressFrameState();
+}
+
+class _AddressFrameState extends State<AddressFrame> {
   PageController pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +51,7 @@ class AddressFrame extends StatelessWidget {
                       controller: pageController,
                       children: <Widget>[
                         Address(
-                          phno: this.phno,
+                          phno: widget.phno,
                         )
                       ],
                     ),
