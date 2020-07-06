@@ -68,12 +68,13 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 200,
+                          height: 280,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
@@ -144,26 +145,38 @@ class _OrdersPageState extends State<OrdersPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
                                   children: <Widget>[
-                                    Text(
-                                      'Order Amount',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          fontFamily: 'sf_pro'),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.85,
+                                      child: Divider(
+                                        color: Colors.white,
+                                        thickness: 0.8,
+                                      ),
                                     ),
-                                    Text(
-                                      'Rs. ${item.orderAmount.toString()}',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-                                          fontFamily: 'sf_pro'),
-                                    )
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Order Amount',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18,
+                                              fontFamily: 'sf_pro'),
+                                        ),
+                                        Text(
+                                          'Rs. ${item.orderAmount.toString()}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              fontFamily: 'sf_pro'),
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
                               )
@@ -190,12 +203,13 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 200,
+                          height: 280,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
@@ -266,26 +280,38 @@ class _OrdersPageState extends State<OrdersPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
                                   children: <Widget>[
-                                    Text(
-                                      'Order Amount',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          fontFamily: 'sf_pro'),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.85,
+                                      child: Divider(
+                                        color: Colors.white,
+                                        thickness: 0.8,
+                                      ),
                                     ),
-                                    Text(
-                                      'Rs. ${item.orderAmount.toString()}',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-                                          fontFamily: 'sf_pro'),
-                                    )
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Order Amount',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18,
+                                              fontFamily: 'sf_pro'),
+                                        ),
+                                        Text(
+                                          'Rs. ${item.orderAmount.toString()}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              fontFamily: 'sf_pro'),
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
                               )
