@@ -417,7 +417,8 @@ class _CartPageState extends State<CartPage> {
       'DateTime': formattedDate,
       'CompletedTime': 'Not yet completed',
       'ShippedTime': 'Not yet shipped',
-      'Status': 'Placed'
+      'Status': 'Placed',
+      'orderLength': item.length
     });
 
     print('Order Placed');
