@@ -3,7 +3,7 @@ class Orders {
   int orderAmount;
   List<String> itemsName;
   List<int> itemsQty;
-  String dateTime, completedTime, shippedTime;
+  String dateTime, completedTime, shippedTime, status;
 
   Orders(
       {this.isCompleted,
@@ -12,5 +12,6 @@ class Orders {
       this.orderAmount,
       this.dateTime,
       this.shippedTime,
-      this.completedTime});
+      this.completedTime,
+      this.status});
 }
