@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceryman/Classes/Cart.dart';
 import 'package:groceryman/Classes/DatabaseHelper.dart';
 import 'package:groceryman/OtherPages/CartPage.dart';
@@ -16,7 +17,21 @@ class Item extends StatefulWidget {
 class _ItemState extends State<Item> {
   final dbHelper = DatabaseHelper.instance;
   Cart item;
-  int newQty;
+  int newQty, length = 0;
+
+  getCartLength() async {
+    int x = await dbHelper.queryRowCount();
+    length = x;
+    setState(() {
+      print('Length Updated');
+      length;
+    });
+  }
+
+  @override
+  void initState() {
+    getCartLength();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +48,38 @@ class _ItemState extends State<Item> {
         ),
         backgroundColor: Color(0xFF900c3f),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
-                );
-              },
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-              ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+            },
+            child: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: MediaQuery.of(context).size.height / 30,
             ),
           ),
+          if (length >= 0)
+            Padding(
+              padding: const EdgeInsets.only(left: 0.0, right: 0.0),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: CircleAvatar(
+                  radius: 8.0,
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  child: Text(
+                    length.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
       body: widget.itemCategory.length == 0
@@ -217,6 +249,7 @@ class _ItemState extends State<Item> {
     final id = await dbHelper.insert(item);
     Fluttertoast.showToast(
         msg: 'Added to cart', toastLength: Toast.LENGTH_SHORT);
+    getCartLength();
   }
 
   void _query(String name) async {
@@ -233,17 +266,24 @@ class _ItemState extends State<Item> {
     // row to update
     Cart item = Cart(id, name, imgUrl, price, qty);
     final rowsAffected = await dbHelper.update(item);
+    _query(name);
     Fluttertoast.showToast(msg: 'Updated', toastLength: Toast.LENGTH_SHORT);
     setState(() {
+      _query(item.productName);
       print('Updated');
+      item;
     });
+    getCartLength();
   }
 
   void removeItem(String name) async {
     // Assuming that the number of rows is the id for the last row.
     final rowsDeleted = await dbHelper.delete(name);
+    _query(name);
     setState(() {
       print('Updated');
+      item;
     });
+    getCartLength();
   }
 }
