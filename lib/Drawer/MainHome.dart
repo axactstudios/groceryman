@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
+import 'package:groceryman/Classes/DatabaseHelper.dart';
 import 'package:groceryman/Classes/ItemsClass.dart';
 import 'package:groceryman/Classes/Orders.dart';
 import 'package:groceryman/OtherPages/CartPage.dart';
@@ -77,6 +78,7 @@ class _MainHomeState extends State<MainHome> {
 //  }
 
   void getItemsRef(List items, String category) {
+    getCartLength();
     DatabaseReference itemsref =
         FirebaseDatabase.instance.reference().child(category);
     itemsref.once().then((DataSnapshot snap) {
@@ -95,14 +97,28 @@ class _MainHomeState extends State<MainHome> {
         items.add(c);
       }
       setState(() {
+        length;
         print(items.length);
       });
+    });
+  }
+
+  final dbHelper = DatabaseHelper.instance;
+  int length = 0;
+
+  getCartLength() async {
+    int x = await dbHelper.queryRowCount();
+    length = x;
+    setState(() {
+      print('Length Updated here');
+      length;
     });
   }
 
   @override
   void initState() {
     super.initState();
+    getCartLength();
     getItemsRef(Fruits, 'Fruits');
     getItemsRef(Vegetables, 'Vegetables');
     getItemsRef(Snacks, 'Snacks');
@@ -113,6 +129,14 @@ class _MainHomeState extends State<MainHome> {
     getItemsRef(Garden, 'Garden');
     getItemsRef(Bakery, 'Bakery');
     // getOrders();
+  }
+
+  @override
+  void setState(getCartLength()) async {
+    getCartLength();
+    int x = await dbHelper.queryRowCount();
+    length = x;
+    setState(() => getCartLength());
   }
 
   @override
@@ -130,21 +154,42 @@ class _MainHomeState extends State<MainHome> {
         ),
         backgroundColor: Color(0xFF900c3f),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
-                );
-              },
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-              ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+              getCartLength();
+              setState(() {
+                length;
+              });
+            },
+            child: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: MediaQuery.of(context).size.height / 30,
             ),
           ),
+          if (length >= 0)
+            Padding(
+              padding: const EdgeInsets.only(left: 0.0, right: 0.0),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: CircleAvatar(
+                  radius: 8.0,
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  child: Text(
+                    length.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
 //          Padding(
 //            padding: const EdgeInsets.all(15.0),
 //            child: InkWell(
@@ -190,6 +235,7 @@ class _MainHomeState extends State<MainHome> {
               ).toList(),
               onPageChanged: (index) {
                 setState(() {
+                  length;
                   index;
                 });
               },
@@ -237,6 +283,7 @@ class _MainHomeState extends State<MainHome> {
   Widget categoryCard(name, image, List name1) {
     return InkWell(
       onTap: () {
+        getCartLength();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Item(name1)),
