@@ -110,7 +110,6 @@ class _MainHomeState extends State<MainHome> {
     int x = await dbHelper.queryRowCount();
     length = x;
     setState(() {
-      print('Length Updated here');
       length;
     });
   }

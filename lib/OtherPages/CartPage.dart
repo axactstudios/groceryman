@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groceryman/Classes/Cart.dart';
 import 'package:groceryman/Classes/DatabaseHelper.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:intl/intl.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -401,6 +402,9 @@ class _CartPageState extends State<CartPage> {
 
     FirebaseUser user = await mAuth.currentUser();
 
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd-MM-yyyy  kk:mm').format(now);
+
     dbRef
         .child('Orders')
         .child(user.uid)
@@ -409,7 +413,10 @@ class _CartPageState extends State<CartPage> {
       "itemsName": item,
       "itemsQty": qty,
       'orderAmount': orderAmount,
-      'isCompleted': false
+      'isCompleted': false,
+      'DateTime': formattedDate,
+      'CompletedTime': 'Not yet completed',
+      'ShippedTime': 'Not yet shipped',
     });
 
     print('Order Placed');
