@@ -45,6 +45,12 @@ class _NavDrawerState extends State<NavDrawer> {
         print(newOrder.orderAmount);
         newOrder.itemsName = List<String>.from(values['itemsName']);
         newOrder.itemsQty = List<int>.from(values['itemsQty']);
+        newOrder.dateTime = values['DateTime'];
+        print(newOrder.dateTime);
+        newOrder.completedTime = values['CompletedTime'];
+        print(newOrder.completedTime);
+        newOrder.shippedTime = values['ShippedTime'];
+        print(newOrder.shippedTime);
         print(newOrder.itemsQty);
         print(newOrder.itemsName);
         if (values['isCompleted'] == false) {
