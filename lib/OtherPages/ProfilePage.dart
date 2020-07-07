@@ -87,22 +87,26 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 150,
+                        Container(
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 150,
+                          ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
-                        Text(
-                          'PROFILE',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 25,
-                              fontFamily: 'sf_pro',
-                              letterSpacing: 5),
+                        Container(
+                          child: Text(
+                            'PROFILE',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 25,
+                                fontFamily: 'sf_pro',
+                                letterSpacing: 5),
+                          ),
                         ),
                       ],
                     ),
