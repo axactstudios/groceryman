@@ -73,7 +73,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 335,
+                          height: 355,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
@@ -169,7 +169,29 @@ class _OrdersPageState extends State<OrdersPage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Order placed',
+                                          'Order Status',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18,
+                                              fontFamily: 'sf_pro'),
+                                        ),
+                                        Text(
+                                          ' ${item.status}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              fontFamily: 'sf_pro'),
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Order placed at',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
@@ -278,7 +300,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 335,
+                          height: 355,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
@@ -370,7 +392,29 @@ class _OrdersPageState extends State<OrdersPage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Order placed',
+                                          'Order Status',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18,
+                                              fontFamily: 'sf_pro'),
+                                        ),
+                                        Text(
+                                          ' ${item.status}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              fontFamily: 'sf_pro'),
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Order placed at',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,

@@ -131,14 +131,6 @@ class _MainHomeState extends State<MainHome> {
   }
 
   @override
-  void setState(getCartLength()) async {
-    getCartLength();
-    int x = await dbHelper.queryRowCount();
-    length = x;
-    setState(() => getCartLength());
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),

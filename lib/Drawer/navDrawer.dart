@@ -50,6 +50,8 @@ class _NavDrawerState extends State<NavDrawer> {
         newOrder.completedTime = values['CompletedTime'];
         print(newOrder.completedTime);
         newOrder.shippedTime = values['ShippedTime'];
+        newOrder.status = values['Status'];
+        print(newOrder.status);
         print(newOrder.shippedTime);
         print(newOrder.itemsQty);
         print(newOrder.itemsName);
