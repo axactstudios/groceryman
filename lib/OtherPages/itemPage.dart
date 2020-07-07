@@ -15,9 +15,12 @@ class Item extends StatefulWidget {
 
 class _ItemState extends State<Item> {
   final dbHelper = DatabaseHelper.instance;
+  Cart item;
+  int newQty;
 
   @override
   Widget build(BuildContext context) {
+    double pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -53,6 +56,7 @@ class _ItemState extends State<Item> {
               itemCount: widget.itemCategory.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (_, index) {
+                _query(widget.itemCategory[index].name);
                 return UI(
                   widget.itemCategory[index].name,
                   widget.itemCategory[index].imageUrl,
@@ -95,24 +99,106 @@ class _ItemState extends State<Item> {
               SizedBox(
                 height: 15,
               ),
-              InkWell(
-                onTap: () {
-                  addToCart(name: name, imgUrl: imageUrl, price: price, qty: 1);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xFF900c3f),
-                    borderRadius: BorderRadius.circular(33),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: Text(
-                      'Add to cart',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
+              item == null
+                  ? InkWell(
+                      onTap: () {
+                        _query(name);
+                        addToCart(
+                            name: name, imgUrl: imageUrl, price: price, qty: 1);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFF900c3f),
+                          borderRadius: BorderRadius.circular(33),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Text(
+                            'Add to cart',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {
+                                  if (item.qty == 1) {
+                                    removeItem(item.productName);
+                                  } else {
+                                    newQty = item.qty - 1;
+                                    updateItem(
+                                        id: item.id,
+                                        name: item.productName,
+                                        imgUrl: item.imgUrl,
+                                        price: item.price,
+                                        qty: newQty);
+                                  }
+                                },
+                                child: Icon(
+                                  Icons.indeterminate_check_box,
+                                  color: Color(0xFF900c3f),
+                                  size:
+                                      MediaQuery.of(context).size.width * 0.07,
+                                ),
+                              ),
+                              Container(
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    item.qty.toString(),
+                                    style: TextStyle(
+                                        fontFamily: 'sf_pro',
+                                        color: Colors.black,
+                                        fontSize: 17),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  newQty = item.qty + 1;
+                                  updateItem(
+                                      id: item.id,
+                                      name: item.productName,
+                                      imgUrl: item.imgUrl,
+                                      price: item.price,
+                                      qty: newQty);
+                                },
+                                child: Icon(
+                                  Icons.add_box,
+                                  color: Color(0xFF900c3f),
+                                  size:
+                                      MediaQuery.of(context).size.width * 0.07,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  removeItem(item.productName);
+                                },
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                  size:
+                                      MediaQuery.of(context).size.width * 0.07,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
             ],
           ),
         ),
@@ -130,6 +216,34 @@ class _ItemState extends State<Item> {
     Cart item = Cart.fromMap(row);
     final id = await dbHelper.insert(item);
     Fluttertoast.showToast(
-        msg: 'inserted row id: $id', toastLength: Toast.LENGTH_SHORT);
+        msg: 'Added to cart', toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void _query(String name) async {
+    final allRows = await dbHelper.queryRows(name);
+    allRows.forEach((row) => item = Cart.fromMap(row));
+    setState(() {
+      item;
+      print('Updated');
+    });
+  }
+
+  void updateItem(
+      {int id, String name, String imgUrl, String price, int qty}) async {
+    // row to update
+    Cart item = Cart(id, name, imgUrl, price, qty);
+    final rowsAffected = await dbHelper.update(item);
+    Fluttertoast.showToast(msg: 'Updated', toastLength: Toast.LENGTH_SHORT);
+    setState(() {
+      print('Updated');
+    });
+  }
+
+  void removeItem(String name) async {
+    // Assuming that the number of rows is the id for the last row.
+    final rowsDeleted = await dbHelper.delete(name);
+    setState(() {
+      print('Updated');
+    });
   }
 }
