@@ -118,201 +118,204 @@ class _ProfilePageState extends State<ProfilePage> {
                       ? SpinKitWave(
                           color: Color(0xFF900c3f),
                         )
-                      : Container(
-                          height: size.height * 0.5,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF900c3f),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(75),
+                      : SingleChildScrollView(
+                          child: Container(
+                            height: size.height * 0.5,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF900c3f),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(75),
+                              ),
                             ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: size.width * 0.75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.person,
-                                            color: Color(0xFF900c3f),
-                                            size: 30,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.1,
-                                          ),
-                                          Container(
-                                            width: size.width * 0.5,
-                                            child: Text(
-                                              userData.name,
-                                              style: TextStyle(
-                                                  color: Color(0xFF900c3f),
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'sf_pro'),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: size.width * 0.75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.person,
+                                              color: Color(0xFF900c3f),
+                                              size: 30,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: size.width * 0.1,
+                                            ),
+                                            Container(
+                                              width: size.width * 0.5,
+                                              child: Text(
+                                                userData.name,
+                                                style: TextStyle(
+                                                    color: Color(0xFF900c3f),
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: 'sf_pro'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: size.width * 0.75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.phone,
-                                            color: Color(0xFF900c3f),
-                                            size: 30,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.1,
-                                          ),
-                                          Container(
-                                            width: size.width * 0.5,
-                                            child: Text(
-                                              userData.phNo,
-                                              style: TextStyle(
-                                                  color: Color(0xFF900c3f),
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'sf_pro'),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: size.width * 0.75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.phone,
+                                              color: Color(0xFF900c3f),
+                                              size: 30,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: size.width * 0.1,
+                                            ),
+                                            Container(
+                                              width: size.width * 0.5,
+                                              child: Text(
+                                                userData.phNo,
+                                                style: TextStyle(
+                                                    color: Color(0xFF900c3f),
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: 'sf_pro'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: size.width * 0.75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.home,
-                                            color: Color(0xFF900c3f),
-                                            size: 30,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.1,
-                                          ),
-                                          Container(
-                                            width: size.width * 0.5,
-                                            child: Text(
-                                              userData.add1,
-                                              style: TextStyle(
-                                                  color: Color(0xFF900c3f),
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'sf_pro'),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: size.width * 0.75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.home,
+                                              color: Color(0xFF900c3f),
+                                              size: 30,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: size.width * 0.1,
+                                            ),
+                                            Container(
+                                              width: size.width * 0.5,
+                                              child: Text(
+                                                userData.add1,
+                                                style: TextStyle(
+                                                    color: Color(0xFF900c3f),
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: 'sf_pro'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: size.width * 0.75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.location_city,
-                                            color: Color(0xFF900c3f),
-                                            size: 30,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.1,
-                                          ),
-                                          Container(
-                                            width: size.width * 0.5,
-                                            child: Text(
-                                              userData.add2,
-                                              style: TextStyle(
-                                                  color: Color(0xFF900c3f),
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'sf_pro'),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: size.width * 0.75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.location_city,
+                                              color: Color(0xFF900c3f),
+                                              size: 30,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: size.width * 0.1,
+                                            ),
+                                            Container(
+                                              width: size.width * 0.5,
+                                              child: Text(
+                                                userData.add2,
+                                                style: TextStyle(
+                                                    color: Color(0xFF900c3f),
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: 'sf_pro'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: size.width * 0.75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.location_on,
-                                            color: Color(0xFF900c3f),
-                                            size: 30,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.1,
-                                          ),
-                                          Container(
-                                            width: size.width * 0.5,
-                                            child: Text(
-                                              userData.pin,
-                                              style: TextStyle(
-                                                  color: Color(0xFF900c3f),
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'sf_pro'),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: size.width * 0.75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.location_on,
+                                              color: Color(0xFF900c3f),
+                                              size: 30,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: size.width * 0.1,
+                                            ),
+                                            Container(
+                                              width: size.width * 0.5,
+                                              child: Text(
+                                                userData.pin,
+                                                style: TextStyle(
+                                                    color: Color(0xFF900c3f),
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: 'sf_pro'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
