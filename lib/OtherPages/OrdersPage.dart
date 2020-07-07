@@ -73,7 +73,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 355,
+                          height: 420,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
@@ -300,7 +300,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 355,
+                          height: 400,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
@@ -375,129 +375,132 @@ class _OrdersPageState extends State<OrdersPage> {
                                       );
                                     }),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.85,
-                                      child: Divider(
-                                        color: Colors.white,
-                                        thickness: 0.8,
+                              Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.85,
+                                        child: Divider(
+                                          color: Colors.white,
+                                          thickness: 0.8,
+                                        ),
                                       ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          'Order Status',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18,
-                                              fontFamily: 'sf_pro'),
-                                        ),
-                                        Text(
-                                          ' ${item.status}',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              fontFamily: 'sf_pro'),
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          'Order placed at',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18,
-                                              fontFamily: 'sf_pro'),
-                                        ),
-                                        Text(
-                                          ' ${item.dateTime}',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              fontFamily: 'sf_pro'),
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          'Order shipped',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18,
-                                              fontFamily: 'sf_pro'),
-                                        ),
-                                        Text(
-                                          ' ${item.shippedTime}',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              fontFamily: 'sf_pro'),
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          'Order Completed',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18,
-                                              fontFamily: 'sf_pro'),
-                                        ),
-                                        Text(
-                                          ' ${item.completedTime}',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              fontFamily: 'sf_pro'),
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          'Order Amount',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18,
-                                              fontFamily: 'sf_pro'),
-                                        ),
-                                        Text(
-                                          'Rs. ${item.orderAmount.toString()}',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              fontFamily: 'sf_pro'),
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'Order Status',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18,
+                                                fontFamily: 'sf_pro'),
+                                          ),
+                                          Text(
+                                            ' ${item.status}',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'Order placed at',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18,
+                                                fontFamily: 'sf_pro'),
+                                          ),
+                                          Text(
+                                            ' ${item.dateTime}',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'Order shipped',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18,
+                                                fontFamily: 'sf_pro'),
+                                          ),
+                                          Text(
+                                            ' ${item.shippedTime}',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'Order Completed',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18,
+                                                fontFamily: 'sf_pro'),
+                                          ),
+                                          Text(
+                                            ' ${item.completedTime}',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'Order Amount',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18,
+                                                fontFamily: 'sf_pro'),
+                                          ),
+                                          Text(
+                                            'Rs. ${item.orderAmount.toString()}',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                fontFamily: 'sf_pro'),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

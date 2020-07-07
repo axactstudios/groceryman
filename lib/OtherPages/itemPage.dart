@@ -117,19 +117,23 @@ class _ItemState extends State<Item> {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                "₹$imageUrl",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              Container(
+                child: Text(
+                  "₹$imageUrl",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
               ),
               SizedBox(
                 height: 4,
               ),
-              Text(
-                name,
-                style: TextStyle(fontSize: 14),
+              Container(
+                child: Text(
+                  name,
+                  style: TextStyle(fontSize: 14),
+                ),
               ),
               SizedBox(
-                height: 15,
+                height: 7,
               ),
               item == null
                   ? InkWell(
@@ -145,9 +149,11 @@ class _ItemState extends State<Item> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(6.0),
-                          child: Text(
-                            'Add to cart',
-                            style: TextStyle(color: Colors.white),
+                          child: Container(
+                            child: Text(
+                              'Add to cart',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
