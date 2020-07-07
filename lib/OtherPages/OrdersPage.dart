@@ -73,7 +73,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
-                          height: 420,
+                          height: 400,
                           decoration: BoxDecoration(
                             color: Color(0xFF900c3f),
                             borderRadius: BorderRadius.circular(15),
@@ -88,7 +88,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       fontFamily: 'sf_pro'),
                                 ),
                               ),
@@ -103,7 +103,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontFamily: 'sf_pro'),
                                     ),
                                     Text(
@@ -111,7 +111,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontFamily: 'sf_pro'),
                                     )
                                   ],
@@ -120,8 +120,7 @@ class _OrdersPageState extends State<OrdersPage> {
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.125,
+                                  height: 150,
                                   child: ListView.builder(
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
@@ -136,7 +135,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   fontFamily: 'sf_pro'),
                                             ),
                                             Text(
@@ -144,7 +143,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   fontFamily: 'sf_pro'),
                                             )
                                           ],
@@ -173,7 +172,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontFamily: 'sf_pro'),
                                         ),
                                         Text(
@@ -195,7 +194,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontFamily: 'sf_pro'),
                                         ),
                                         Text(
@@ -217,7 +216,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontFamily: 'sf_pro'),
                                         ),
                                         Text(
@@ -239,7 +238,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontFamily: 'sf_pro'),
                                         ),
                                         Text(
@@ -261,7 +260,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontFamily: 'sf_pro'),
                                         ),
                                         Text(
@@ -315,7 +314,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       fontFamily: 'sf_pro'),
                                 ),
                               ),
@@ -330,7 +329,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontFamily: 'sf_pro'),
                                     ),
                                     Text(
@@ -338,42 +337,45 @@ class _OrdersPageState extends State<OrdersPage> {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontFamily: 'sf_pro'),
                                     )
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: item.itemsName.length,
-                                    itemBuilder: (context, index) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Text(
-                                            item.itemsName[index],
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                fontFamily: 'sf_pro'),
-                                          ),
-                                          Text(
-                                            item.itemsQty[index].toString(),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                fontFamily: 'sf_pro'),
-                                          )
-                                        ],
-                                      );
-                                    }),
+                              Container(
+                                height: 150,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: item.itemsName.length,
+                                      itemBuilder: (context, index) {
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              item.itemsName[index],
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  fontFamily: 'sf_pro'),
+                                            ),
+                                            Text(
+                                              item.itemsQty[index].toString(),
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  fontFamily: 'sf_pro'),
+                                            )
+                                          ],
+                                        );
+                                      }),
+                                ),
                               ),
                               Container(
                                 child: Padding(
@@ -398,7 +400,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
                                           Text(
@@ -420,7 +422,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
                                           Text(
@@ -442,7 +444,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
                                           Text(
@@ -464,7 +466,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
                                           Text(
@@ -486,7 +488,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 fontFamily: 'sf_pro'),
                                           ),
                                           Text(
